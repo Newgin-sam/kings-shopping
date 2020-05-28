@@ -13,10 +13,34 @@ const firebaseConfig = {
     measurementId: "G-JYP4LK14R8"
 };
 
+
 firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
 export const firestone = firebase.firestore();
+
+
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+    if(!userAuth) return ;
+
+    const userRef = firestone.doc(`user/${userAuth.uid}`);
+    const snapshot =userRef.get();
+    if(!snapshot.exists){                 //exists is an attribute in object which tells whether the object has value (true) or not (false)
+        const { displayName , email } = userAuth;
+        const createdAt = new Date();
+        try {
+            await userRef.set({
+                displayName,
+                email,
+                createdAt,
+                ...additionalData
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    return userRef;
+}
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ promt : 'select_account'});
