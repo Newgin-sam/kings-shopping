@@ -11,4 +11,4 @@ const MenuItem = ({title,imageUrl,size,match,history,linkUrl}) => (
         </div>
     </div>
 );
-export default withRouter(MenuItem);
+export default withRouter(MenuItem); //withRouter() gives acces to the component properites like location , match and history here history and match comes from home page component

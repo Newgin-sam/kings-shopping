@@ -17,14 +17,14 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
-export const firestone = firebase.firestore();
+export const firestore = firebase.firestore();
 
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
     if(!userAuth) return ;
 
-    const userRef = firestone.doc(`user/${userAuth.uid}`);
-    const snapshot =userRef.get();
+    const userRef = firestore.doc(`user/${userAuth.uid}`);
+    const snapshot = await userRef.get();
     if(!snapshot.exists){                 //exists is an attribute in object which tells whether the object has value (true) or not (false)
         const { displayName , email } = userAuth;
         const createdAt = new Date();
