@@ -4,8 +4,8 @@ import { Switch , Route ,Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import HomePage from './pages/homepage/homepage.component';
-import ShopPage from './pages/shoppage/shoppage.component';
+import HomePage from './pages/home/homepage.component';
+import ShopPage from './pages/shop/shoppage.component';
 import Header from './components/header/header.componenet';
 import SignInSignUp from './pages/sign-in-sign-up/sign-in-sign-up.component';
 import Checkout from './pages/checkout/checkoutPage.component.jsx'
